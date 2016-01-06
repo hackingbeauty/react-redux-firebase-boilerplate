@@ -1,4 +1,4 @@
-export const FIREBASE_URL = 'https://todo-react-redux.firebaseio.com';
+export const FIREBASE_URL = 'https://react-redux-perf.firebaseio.com';
 
 // Route paths
 export const SIGN_IN_PATH = '/sign-in';

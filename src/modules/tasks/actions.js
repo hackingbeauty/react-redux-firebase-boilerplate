@@ -3,6 +3,8 @@ import {
   CREATE_TASK_SUCCESS,
   DELETE_TASK_ERROR,
   DELETE_TASK_SUCCESS,
+  LOAD_TASKS_ERROR,
+  LOAD_TASKS_SUCCESS,
   UPDATE_TASK_ERROR,
   UPDATE_TASK_SUCCESS
 } from './action-types';
@@ -76,26 +78,55 @@ export function updateTask(task, changes) {
   };
 }
 
+let loaded = false;
 
 export function registerListeners() {
   return (dispatch, getState) => {
     const { auth, firebase } = getState();
     const ref = firebase.child(`tasks/${auth.id}`);
 
-    ref.on('child_added', snapshot => dispatch({
-      type: CREATE_TASK_SUCCESS,
-      payload: recordFromSnapshot(snapshot)
-    }));
+    /*
+    ref.on('child_added', snapshot => {
+      if (!loaded) return;
+      dispatch({
+        type: CREATE_TASK_SUCCESS,
+        payload: recordFromSnapshot(snapshot)
+      });
+    });
 
-    ref.on('child_changed', snapshot => dispatch({
-      type: UPDATE_TASK_SUCCESS,
-      payload: recordFromSnapshot(snapshot)
-    }));
+    ref.on('child_changed', snapshot => {
+      if (!loaded) return;
+      dispatch({
+        type: UPDATE_TASK_SUCCESS,
+        payload: recordFromSnapshot(snapshot)
+      });
+    });
 
-    ref.on('child_removed', snapshot => dispatch({
-      type: DELETE_TASK_SUCCESS,
-      payload: recordFromSnapshot(snapshot)
-    }));
+    ref.on('child_removed', snapshot => {
+      if (!loaded) return;
+      dispatch({
+        type: DELETE_TASK_SUCCESS,
+        payload: recordFromSnapshot(snapshot)
+      });
+    });
+    */
+
+    ref.on('value', snapshots => {
+      let records = [];
+
+      snapshots.forEach(snap => {
+        let record = snap.val();
+        record.key = snap.key();
+        records.push(record);
+      });
+
+      dispatch({
+        type: LOAD_TASKS_SUCCESS,
+        payload: records
+      });
+
+      loaded = true;
+    });
   };
 }
 

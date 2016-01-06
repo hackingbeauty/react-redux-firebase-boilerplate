@@ -5,6 +5,7 @@ import {
 import {
   CREATE_TASK_SUCCESS,
   DELETE_TASK_SUCCESS,
+  LOAD_TASKS_SUCCESS,
   UPDATE_TASK_SUCCESS
 } from './action-types';
 
@@ -41,6 +42,13 @@ export function tasksReducer(state = initialState, action) {
           return task.key !== action.payload.key;
         }),
         previous: [ ...state.list ]
+      };
+
+    case LOAD_TASKS_SUCCESS:
+      return {
+        deleted: null,
+        list: action.payload || [],
+        previous: []
       };
 
     case UPDATE_TASK_SUCCESS:

@@ -22,6 +22,13 @@ export class TaskItem extends Component {
     this.onKeyUp = this.onKeyUp.bind(this);
   }
 
+  shouldComponentUpdate(nextProps, nextState) {
+    const { task } = this.props;
+    return nextProps.task.title !== task.title ||
+           nextProps.task.completed !== task.completed ||
+           nextState.editing !== this.state.editing;
+  }
+
   delete() {
     this.props.deleteTask(this.props.task);
   }
