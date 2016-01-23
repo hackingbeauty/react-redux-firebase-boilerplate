@@ -42,7 +42,7 @@ export class App extends Component {
         <header className="header">
           <div className="g-row">
             <div className="g-col">
-              <h1 className="header__title">Todo React Redux</h1>
+              <h1 className="header__title">React Youtube Autocomplete</h1>
               <ul className="header__links">
                 {auth.authenticated ? <li><a className="header__link" onClick={this.signOut} href="javascript:">Sign out</a></li> : null}
                 <li><a className="header__link header__link--github" href="https://github.com/r-park/todo-react-redux"></a></li>
@@ -51,9 +51,14 @@ export class App extends Component {
           </div>
         </header>
 
-        <YoutubeSearchBox />
-
-        <main className="main">{children}</main>
+        <main className="main">
+          <div className="g-row">
+            <div className="g-col">
+              <YoutubeSearchBox />
+            </div>
+          </div>
+          {/*{children}*/}
+        </main>
       </div>
     );
   }
