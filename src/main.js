@@ -11,7 +11,6 @@ import { authActions, authRouteResolver } from 'modules/auth';
 import { Root } from 'components/root';
 import createStore from './store';
 
-
 const history = createBrowserHistory();
 
 const store = createStore({
