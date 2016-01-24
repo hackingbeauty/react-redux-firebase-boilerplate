@@ -1,0 +1,66 @@
+#yt-typeahead, h1 {
+    font-family: Roboto,arial,sans-serif;
+}
+
+#yt-typeahead {
+    width: 583px;
+    border: 1px solid blue !important;
+    position: relative;
+    right: 10px;
+}
+
+.react-typeahead-container  {
+    width: 100%;
+}
+.react-typeahead-input {
+    height: 35px;
+}
+
+.react-typeahead-input-container {
+    border: 1px solid #ccc;
+    box-shadow: inset 0 1px 2px #eee;
+}
+
+.react-typeahead-input-container input {
+    font-size: 16px;
+    height: 37px;
+    padding: 2px 6px;
+    width: 100%;
+    border: 0;
+    outline: none;
+    background: transparent;
+}
+
+.react-typeahead-input-container input:focus {
+    border: 1px solid #1c62b9;
+    box-shadow: inset 0 1px 2px rgba(0,0,0,0.3);
+}
+
+.react-typeahead-options {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    border: 1px solid #ccc;
+    border-top: 0;
+    cursor: default;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    z-index: 1;
+
+    li[role="option"]{
+        padding: 5px;
+        &[aria-selected="true"]{
+            background: #00bcd4;
+            color: white;
+            font-weight: bold;
+        }
+    }
+}
+
+.yt-option {
+    padding:10px;
+    border :1px solid green !important;
+}
+
+.yt-selected-option {
+    background-color: #eee;
+}
